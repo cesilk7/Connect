@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  connect:
+    build: .
+    volumes:
+      - .venv:/src/.venv
+      - .:/src
+    ports:
+      - 8000:8000
+    tty: true
