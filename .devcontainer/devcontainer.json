@@ -29,6 +29,8 @@
         "octref.vetur",
         "ms-python.vscode-pylance",
         "streetsidesoftware.code-spell-checker"
+		// "ms-toolsai.jupyter"
+		// "ms-toolsai.jupyter-keymap"
 	]
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
