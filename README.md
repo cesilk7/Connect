@@ -25,5 +25,22 @@ docker-compose build --no-cache
 docker-compose up
 ```
 
+- テーブルの作成（リセット）
+```sh
+docker-compose exec connect poetry run python -m api.migrate_db
+```
+
 5. サーバー起動確認  
 http://localhost:8000/docs
+
+- PostgreSQLに接続
+```sh
+docker-compose exec db /bin/bash
+su - postgres
+psql
+```
+
+- Pythonライブラリの追加
+```sh
+docker-compose exec connect poetry add sqlalchemy asyncpg psycopg2
+```
