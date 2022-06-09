@@ -42,5 +42,14 @@ psql
 
 - Pythonライブラリの追加
 ```sh
+# 本番
 docker-compose exec connect poetry add sqlalchemy asyncpg psycopg2
+
+# 開発
+docker-compose exec connect poetry add -D pytest-asyncio aiosqlite httpx
+```
+
+- テストの実行
+```sh
+docker-compose run --entrypoint "poetry run pytest" connect
 ```
