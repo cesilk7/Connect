@@ -1,55 +1,62 @@
 
-
-1. ビルド
+### 1. ビルド
 ```sh
 docker-compose build
 ```
 
-2. pyproject.tomlの作成
+### 2. pyproject.tomlの作成
 ```sh
 docker-compose run --entrypoint "poetry init --name connect --dependency fastapi --dependency uvicorn[standard]" connect
 ```
 
-3. FastAPIのインストール
+### 3. ライブラリのインストール
 ```sh
 docker-compose run --entrypoint "poetry install" connect
 ```
 
-- 新しいPythonパッケージを追加した場合などは以下のようにイメージを再ビルドするだけで、 pyproject.toml に含まれている全てのパッケージをインストールすることができます。
+### 新しいPythonパッケージを追加した場合などは以下のようにイメージを再ビルドするだけで、 pyproject.toml に含まれている全てのパッケージをインストールすることができます。
 ```sh
 docker-compose build --no-cache
 ```
 
-4. Pythonアプリケーションの起動
+### 4. Pythonアプリケーションの起動
 ```sh
 docker-compose up
 ```
 
-- テーブルの作成（リセット）
+### テーブルの作成（リセット）
 ```sh
-docker-compose exec connect poetry run python -m api.migrate_db
+docker-compose exec backend poetry run python -m api.migrate_db
 ```
 
-5. サーバー起動確認  
+### 5. サーバー起動確認
+```sh
+poetry run uvicorn api.main:app --host '0.0.0.0' --reload
+```
 http://localhost:8000/docs
 
-- PostgreSQLに接続
+### PostgreSQLに接続
 ```sh
 docker-compose exec db /bin/bash
 su - postgres
 psql
 ```
 
-- Pythonライブラリの追加
+### Python環境に接続
 ```sh
-# 本番
-docker-compose exec connect poetry add sqlalchemy asyncpg psycopg2
-
-# 開発
-docker-compose exec connect poetry add -D pytest-asyncio aiosqlite httpx
+docker-compose exec backend /bin/bash
 ```
 
-- テストの実行
+### Pythonライブラリの追加
 ```sh
-docker-compose run --entrypoint "poetry run pytest" connect
+# 本番
+docker-compose exec backend poetry add sqlalchemy asyncpg psycopg2
+
+# 開発
+docker-compose exec backend poetry add -D pytest-asyncio aiosqlite httpx
+```
+
+### テストの実行
+```sh
+docker-compose run --entrypoint "poetry run pytest" backend
 ```

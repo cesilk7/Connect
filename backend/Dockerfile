@@ -1,4 +1,4 @@
-FROM python:3.10.4-buster
+FROM python:3.10.5-buster
 
 ENV PYTHONDONTWRITEBYTECODE=1
 # イナリレイヤ下での標準出力とエラー出力を抑制します。
@@ -13,7 +13,7 @@ RUN pip install poetry
 # poetryの定義ファイルをコピー (存在する場合)
 COPY pyproject.toml* poetry.lock* ./
 
-RUN poetry config virtualenvs.in-project true
+RUN poetry config virtualenvs.create false
 RUN if [ -f pyproject.toml ]; then poetry install; fi
 
 # uvicornのサーバーを立ち上げる
