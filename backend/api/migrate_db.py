@@ -1,13 +1,12 @@
 import os
 
-from dotenv import load_dotenv
+from decouple import config
 from sqlalchemy import create_engine
 
 from api.models.model_place import Base
 
 
-load_dotenv()
-DB_URL = f'mysql+pymysql://root:{os.environ["DB_PASSWORD"]}@db:3306/connect?charset=utf8'
+DB_URL = f'mysql+pymysql://root:{config("DB_PASSWORD")}@db:3306/connect?charset=utf8'
 engine = create_engine(DB_URL, echo=True)
 
 
