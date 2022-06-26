@@ -1,12 +1,12 @@
 import uvicorn
 from fastapi import FastAPI
 
-from api.routers import place, visited
+from api.routers import route_place, route_visited
 
 
 app = FastAPI()
-app.include_router(place.router)
-app.include_router(visited.router)
+app.include_router(route_place.router)
+app.include_router(route_visited.router)
 
 
 @app.get('/hello')
