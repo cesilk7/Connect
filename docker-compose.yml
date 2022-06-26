@@ -9,7 +9,7 @@ services:
       - 8000:8000
     tty: true
   db:
-    image: mysql:8.0
+    build: ./mysql
     environment:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
