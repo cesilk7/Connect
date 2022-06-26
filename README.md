@@ -35,11 +35,10 @@ poetry run uvicorn api.main:app --host '0.0.0.0' --reload
 ```
 http://localhost:8000/docs
 
-### PostgreSQLに接続
+### MySQLに接続
 ```sh
 docker-compose exec db /bin/bash
-su - postgres
-psql
+mysql -u root -p
 ```
 
 ### Python環境に接続

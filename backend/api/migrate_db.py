@@ -1,9 +1,13 @@
+import os
+
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
 
 from api.models.place import Base
 
 
-DB_URL = 'postgresql+psycopg2://postgres:postgres@db:5432/connect'
+load_dotenv()
+DB_URL = f'mysql+pymysql://root:{os.environ["DB_PASSWORD"]}@db:3306/connect?charset=utf8'
 engine = create_engine(DB_URL, echo=True)
 
 
