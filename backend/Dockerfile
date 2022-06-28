@@ -4,6 +4,9 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # イナリレイヤ下での標準出力とエラー出力を抑制します。
 ENV PYTHONUNBUFFERED=1
 
+RUN apt-get update && apt-get -y upgrade
+RUN apt-get install -y default-mysql-client
+
 WORKDIR /src
 
 RUN python -m pip install --upgrade pip

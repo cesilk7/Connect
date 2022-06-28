@@ -11,12 +11,3 @@ class Place(Base):
     name = Column(String(1024))
     
     visited = relationship('Visited', back_populates='place')
-    
-    
-class Visited(Base):
-    __tablename__ = 'visited'
-    
-    id = Column(Integer, ForeignKey('places.id'), primary_key=True)
-    
-    place = relationship('Place', back_populates='visited')
-    

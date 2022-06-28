@@ -4,25 +4,25 @@ from sqlalchemy import select
 from sqlalchemy.engine import Result
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from api.models import model_place
+from api.models import model_visited
 
 
-async def get_visited(db: AsyncSession, place_id: int) -> Optional[model_place.Visited]:
+async def get_visited(db: AsyncSession, place_id: int) -> Optional[model_visited.Visited]:
     result: Result = await db.execute(
-        select(model_place.Visited).filter(model_place.Visited.id == place_id)
+        select(model_visited.Visited).filter(model_visited.Visited.id == place_id)
     )
-    visited: Optional[Tuple[model_place.Visited]] = result.first()
+    visited: Optional[Tuple[model_visited.Visited]] = result.first()
     return visited[0] if visited is not None else None
 
 
-async def create_visited(db: AsyncSession, place_id: int) -> model_place.Visited:
-    visited = model_place.Visited(id=place_id)
+async def create_visited(db: AsyncSession, place_id: int) -> model_visited.Visited:
+    visited = model_visited.Visited(id=place_id)
     db.add(visited)
     await db.commit()
     await db.refresh(visited)
     return visited
 
 
-async def delete_visited(db: AsyncSession, original: model_place.Visited) -> None:
+async def delete_visited(db: AsyncSession, original: model_visited.Visited) -> None:
     await db.delete(original)
     await db.commit()
