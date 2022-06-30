@@ -4,7 +4,7 @@ from sqlalchemy import select
 from sqlalchemy.engine import Result
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from api.models import model_place
+from api.models import model_place, model_visited
 from api.schemas import schema_place
 
 
@@ -24,8 +24,8 @@ async def get_places_with_visited(db: AsyncSession) -> List[Tuple[int, str, bool
             select(
                 model_place.Place.id,
                 model_place.Place.name,
-                model_place.Visited.id.isnot(None).label('visited'),
-            ).outerjoin(model_place.Visited)
+                model_visited.Visited.id.isnot(None).label('visited'),
+            ).outerjoin(model_visited.Visited)
         )
     )
     return result.all()

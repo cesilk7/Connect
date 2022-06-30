@@ -1,7 +1,7 @@
 from decouple import config
 from sqlalchemy import create_engine
 
-from api.db import Base
+from api.database import Base
 from api.models.model_place import Place
 from api.models.model_user import User
 from api.models.model_visited import Visited

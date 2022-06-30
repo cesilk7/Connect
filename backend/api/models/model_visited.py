@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
-from api.db import Base
+from api.database import Base
 
 
 class Visited(Base):

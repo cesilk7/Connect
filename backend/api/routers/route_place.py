@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.cruds import crud_place
 from api.schemas import schema_place
-from api.db import get_db
+from api.database import get_db
 
 router = APIRouter()
 
