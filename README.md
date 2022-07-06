@@ -32,6 +32,7 @@ docker-compose exec backend poetry run python -m api.migrate_db
 ### 5. サーバー起動確認
 ```sh
 poetry run uvicorn api.main:app --host '0.0.0.0' --reload
+docker-compose run --entrypoint "poetry run uvicorn api.main:app --host '0.0.0.0' --reload" backend
 ```
 http://localhost:8000/docs
 
